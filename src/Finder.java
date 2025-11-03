@@ -17,6 +17,15 @@ public class Finder {
 
     public void buildTable(BufferedReader br, int keyCol, int valCol) throws IOException {
         // TODO: Complete the buildTable() function!
+
+        // ArrayList of ArrayLists
+
+        // Hashing function for each key
+
+        // Have a large enough p value
+
+        // Put each value inside the correct arraylist based off hashing of key
+
         br.close();
     }
 
