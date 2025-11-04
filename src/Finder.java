@@ -12,6 +12,9 @@ import java.io.IOException;
 public class Finder {
 
     private static final String INVALID = "INVALID KEY";
+    private static final int modulo = 1000000007;
+    private static final int radix = 31;
+
 
     public Finder() {}
 
@@ -32,5 +35,51 @@ public class Finder {
     public String query(String key){
         // TODO: Complete the query() function!
         return INVALID;
+    }
+
+    // Node class for each key and value
+    private static class Node {
+        // Key value pair
+        private String key;
+        private String value;
+
+        // Basic constructor
+        Node (String key, String value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        // Getters and Setters
+        public String getKey() {
+            return key;
+        }
+
+        public void setKey(String key) {
+            this.key = key;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
+        }
+    }
+
+    // Hashing function
+    private int calculateHash(String key) {
+        // Variables for set-up
+        long hash = 0;
+        long power = 1;
+
+        // Rolling hash function implementation
+        for (int i = 0; i < key.length(); i++) {
+            hash = (hash + (key.charAt(i)) * radix) % modulo;
+            power = (power * radix) % modulo;
+        }
+
+        // Return the int version
+        return (int) hash;
     }
 }
