@@ -12,66 +12,38 @@ import java.io.IOException;
 public class Finder {
 
     private static final String INVALID = "INVALID KEY";
+    private HashMap hashmap;
 
-    public Finder() {}
+    // Constructor
+    public Finder() {
+        hashmap = new HashMap();
+    }
 
-    public void buildTable(BufferedReader br, int keyCol, int valCol) throws IOException {
-        // TODO: Complete the buildTable() function!
+    public void buildTable (BufferedReader br, int keyCol, int valCol) throws IOException {
+        // Loop through each line in BufferedReader object
+        String currentKey = br.readLine();
+
+        while (currentKey != null) {
+            String[] arr = currentKey.split(",");
+
+            hashmap.add(arr[keyCol], arr[valCol]);
+
+            // Read next line
+            currentKey = br.readLine();
+        }
         br.close();
     }
 
-    public String query(String key){
-        // TODO: Complete the query() function!
-        return INVALID;
-    }
-}
+    public String query (String key) {
+        // Use built-in hashmap function
+        String value = hashmap.get(key);
 
-
-/*
-
-// Node class for each key and value
-    private static class Node {
-        // Key value pair
-        private String key;
-        private String value;
-
-        // Basic constructor
-        Node (String key, String value) {
-            this.key = key;
-            this.value = value;
+        // Return correct value
+        if (value == null) {
+            return INVALID;
         }
-
-        // Getters and Setters
-        public String getKey() {
-            return key;
-        }
-
-        public void setKey(String key) {
-            this.key = key;
-        }
-
-        public String getValue() {
+        else {
             return value;
         }
-
-        public void setValue(String value) {
-            this.value = value;
-        }
     }
-
-// Hashing function
-    private int calculateHash(String key) {
-        // Variables for set-up
-        long hash = 0;
-        long power = 1;
-
-        // Rolling hash function implementation
-        for (int i = 0; i < key.length(); i++) {
-            hash = (hash + (key.charAt(i)) * radix) % modulo;
-            power = (power * radix) % modulo;
-        }
-
-        // Return the int version
-        return (int) hash;
-    }
- */
+}

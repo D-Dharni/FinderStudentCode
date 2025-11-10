@@ -35,6 +35,7 @@ public class HashMap {
     }
 
     public void add (String key, String value) {
+        // Base case
         if (numberOfPairs  >= tablesize * 0.5) {
             resize();
         }
@@ -53,9 +54,11 @@ public class HashMap {
     }
 
     public String get (String key) {
+        // Save variables
         int keyHash = hash(key);
         int index = keyHash;
 
+        // Make sure the index isn't null
         while (keys[index] != null && !keys[index].equals(key)) {
             index = (index + 1) % tablesize;
         }
