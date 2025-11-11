@@ -66,7 +66,7 @@ public class HashMap {
         return values[index];
     }
 
-    public void resize () {
+    private void resize () {
         // Formula to maximize module spread
         tablesize = (tablesize * 2) - 1;
 
